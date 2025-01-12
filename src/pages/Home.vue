@@ -1,18 +1,16 @@
 <template>
-	<div class="home-wrap">
+	<div class="home-wrap" v-motion-fade-visible>
 		<div class="home-wrap__bg"></div>
 		<div class="container">
 			<div class="home">
 				<div class="home__info">
-					<p>Привіт! Мене звати Роман, і я</p>
-					<h1>Web Developer</h1>
+					<p>{{ $t('title_top') }}</p>
+					<h1>{{ $t('title_bot') }}</h1>
 					<p>
-						Створюю сучасні, стильні та функціональні рішення для вебу. Моя мета
-						— не просто кодити, а реалізовувати ідеї, які приносять реальну
-						користь.
+						{{ $t('description') }}
 					</p>
 					<button>
-						Зв'язатись зі мною
+						{{ $t('btn') }}
 						<svg
 							width="19.126343"
 							height="17.764862"
@@ -30,28 +28,58 @@
 						</svg>
 					</button>
 				</div>
-				<img src="../assets/images/main.png" alt="" />
+				<img
+					v-if="theme === 'theme-dark'"
+					src="../assets/images/main.png"
+					alt=""
+				/>
+				<img v-else src="../assets/images/main-2.png" alt="" />
 			</div>
 			<div class="skills">
-				<span class="skills__title">Навички:</span>
+				<span class="skills__title">{{ $t('skills') }}</span>
 				<ul class="skills__list">
 					<li class="skills__list-item">
-						<img src="../assets/images/skills/skill-1.svg" alt="html" />
+						<svg>
+							<use
+								class="icon"
+								href="../assets/images/skills/symbol-defs.svg#icon-skill-1"
+							></use>
+						</svg>
 					</li>
 					<li class="skills__list-item">
-						<img src="../assets/images/skills/skill-2.svg" alt="css" />
+						<svg>
+							<use
+								href="../assets/images/skills/symbol-defs.svg#icon-skill-2"
+							></use>
+						</svg>
 					</li>
 					<li class="skills__list-item">
-						<img src="../assets/images/skills/skill-3.png" alt="js" />
+						<svg>
+							<use
+								href="../assets/images/skills/symbol-defs.svg#icon-skill-3"
+							></use>
+						</svg>
 					</li>
 					<li class="skills__list-item">
-						<img src="../assets/images/skills/skill-4.svg" alt="vue" />
+						<svg>
+							<use
+								href="../assets/images/skills/symbol-defs.svg#icon-skill-4"
+							></use>
+						</svg>
 					</li>
 					<li class="skills__list-item">
-						<img src="../assets/images/skills/skill-5.svg" alt="nuxt" />
+						<svg>
+							<use
+								href="../assets/images/skills/symbol-defs.svg#icon-skill-5"
+							></use>
+						</svg>
 					</li>
 					<li class="skills__list-item">
-						<img src="../assets/images/skills/skill-6.svg" alt="wordpress" />
+						<svg>
+							<use
+								href="../assets/images/skills/symbol-defs.svg#icon-skill-6"
+							></use>
+						</svg>
 					</li>
 				</ul>
 			</div>
@@ -60,8 +88,18 @@
 </template>
 
 <script>
+import { MotionDirective as motion } from '@vueuse/motion'
+
 export default {
 	name: 'Home',
+	data() {
+		return {
+			theme: window.localStorage.theme,
+		}
+	},
+	directives: {
+		motion: motion(),
+	},
 }
 </script>
 
@@ -77,7 +115,7 @@ export default {
 		width: 100%;
 		height: 47px;
 		filter: blur(80px);
-		background: rgb(72, 193, 151);
+		background: var(--color-bg-element);
 	}
 }
 .home {
@@ -137,7 +175,12 @@ export default {
 	}
 	&__list {
 		@include flex(row, flex-start, center);
-		gap: 25px;
+	}
+	&__list-item {
+		svg {
+			width: 80px;
+			height: 40px;
+		}
 	}
 }
 </style>

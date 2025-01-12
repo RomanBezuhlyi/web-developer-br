@@ -76,20 +76,16 @@ export default {
 	-webkit-transition: 0.4s;
 	transition: 0.4s;
 	box-shadow: 0 0px 15px #2020203d;
-	background: $accent url('https://i.ibb.co/FxzBYR9/night.png');
+	background: $accent url('../assets/images/moon.svg');
 	background-repeat: no-repeat;
 	background-position: center;
-}
-
-input:checked + .slider {
-	background-color: $accent;
 }
 
 input:checked + .slider:before {
 	-webkit-transform: translateX(18px);
 	-ms-transform: translateX(18px);
 	transform: translateX(18px);
-	background: $light url('https://i.ibb.co/7JfqXxB/sunny.png');
+	background: rgb(13, 130, 89) url('../assets/images/sun.svg');
 	background-repeat: no-repeat;
 	background-position: center;
 }

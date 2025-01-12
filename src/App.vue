@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-motion-fade-visible>
 		<Header />
 		<router-view />
 	</div>

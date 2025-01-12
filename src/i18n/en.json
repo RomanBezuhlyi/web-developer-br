@@ -1,0 +1,12 @@
+{
+	"main": "Home",
+	"services": "Services",
+	"reviews": "Reviews",
+	"portfolio": "Portfolio",
+	"contacts": "Contacts",
+	"title_top": "Hello! My name is Roman, and I",
+	"title_bot": "Web Developer",
+	"description": "I create modern, stylish, and functional web solutions. My goal is not just to code, but to implement ideas that bring real benefits.",
+	"btn": "Contact me",
+	"skills": "Skills:"
+}
