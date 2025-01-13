@@ -19,24 +19,37 @@
 				<div class="header__control">
 					<SwitchTheme />
 					<SwitchLang />
-					<button class="header__btn">
+					<button class="header__btn" @click="openModal = true">
 						<span>{{ $t('contacts') }}</span>
 					</button>
 				</div>
 			</div>
 		</div>
 	</header>
+	<Modal v-if="openModal" @close-modal="handleCloseModal" />
 </template>
 
 <script>
 import SwitchLang from '@/components/SwitchLang'
 import SwitchTheme from '@/components/SwitchTheme'
+import Modal from '@/components/Modal'
 
 export default {
 	name: 'Header',
+	data() {
+		return {
+			openModal: false,
+		}
+	},
 	components: {
 		SwitchTheme,
 		SwitchLang,
+		Modal,
+	},
+	methods: {
+		handleCloseModal() {
+			this.openModal = false
+		},
 	},
 }
 </script>

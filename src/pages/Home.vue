@@ -9,31 +9,12 @@
 					<p>
 						{{ $t('description') }}
 					</p>
-					<button>
+					<button @click="openModal = true">
 						{{ $t('btn') }}
-						<svg
-							width="19.126343"
-							height="17.764862"
-							viewBox="0 0 19.1263 17.7649"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							xmlns:xlink="http://www.w3.org/1999/xlink"
-						>
-							<path
-								id="Vector"
-								d="M15.49 0.9L19.09 13.96C19.16 14.21 19.12 14.44 18.99 14.62C18.86 14.79 18.64 14.9 18.38 14.9C18.13 14.9 17.86 14.81 17.63 14.64C17.4 14.47 17.24 14.24 17.17 13.99L14.19 3.16L3.46 17.48C3.32 17.65 3.11 17.76 2.85 17.76C2.6 17.76 2.33 17.67 2.1 17.5C1.88 17.33 1.71 17.1 1.64 16.85C1.57 16.61 1.61 16.37 1.74 16.19L12.47 1.88L1.24 2.05C0.99 2.06 0.72 1.96 0.49 1.79C0.26 1.62 0.1 1.39 0.03 1.14C-0.04 0.9 0 0.66 0.13 0.48C0.26 0.31 0.48 0.21 0.73 0.2L14.27 0C14.4 -0.01 14.53 0.01 14.66 0.06C14.79 0.1 14.91 0.17 15.03 0.26C15.14 0.34 15.24 0.44 15.32 0.55C15.4 0.66 15.45 0.78 15.49 0.9Z"
-								fill-opacity="1.000000"
-								fill-rule="nonzero"
-							/>
-						</svg>
+						<i class="fa-solid fa-arrow-up"></i>
 					</button>
 				</div>
-				<img
-					v-if="theme === 'theme-dark'"
-					src="../assets/images/main.png"
-					alt=""
-				/>
-				<img v-else src="../assets/images/main-2.png" alt="" />
+				<img src="../assets/images/main.png" alt="" />
 			</div>
 			<div class="skills">
 				<span class="skills__title">{{ $t('skills') }}</span>
@@ -85,20 +66,30 @@
 			</div>
 		</div>
 	</div>
+	<Modal v-if="openModal" @close-modal="handleCloseModal" />
 </template>
 
 <script>
 import { MotionDirective as motion } from '@vueuse/motion'
+import Modal from '@/components/Modal'
 
 export default {
 	name: 'Home',
 	data() {
 		return {
-			theme: window.localStorage.theme,
+			openModal: false,
 		}
 	},
 	directives: {
 		motion: motion(),
+	},
+	components: {
+		Modal,
+	},
+	methods: {
+		handleCloseModal() {
+			this.openModal = false
+		},
 	},
 }
 </script>
@@ -123,6 +114,8 @@ export default {
 	z-index: 2;
 	@include flex(row, center, center);
 	gap: 30px;
+	@media (max-width: 991px) {
+	}
 	&__info {
 		h1 {
 			font-size: 77px;
@@ -150,8 +143,8 @@ export default {
 			border-radius: 30px;
 			background: black;
 			border: 2px solid black;
-			svg {
-				fill: #ffffff;
+			i {
+				transform: rotate(45deg);
 				@include transition;
 			}
 
@@ -170,7 +163,7 @@ export default {
 .skills {
 	&__title {
 		display: block;
-		font-weight: 400;
+		font-weight: 600;
 		margin-bottom: 25px;
 	}
 	&__list {
